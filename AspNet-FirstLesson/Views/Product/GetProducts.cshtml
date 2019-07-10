@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/GetProducts.css" rel="stylesheet" />
+    <title>GetProducts</title>
+</head>
+<body>
+    <div class="Center Title">
+        <h1>ProductShop.com</h1>
+    </div>
+    <div>
+        @foreach (var i in ViewBag.Products)
+        {
+        <div class="Center Product">
+            <span>Имя: </span><span>@i.Name</span><br />
+            <span>Цена: </span><span>@i.Price</span><br />
+            <a href="~/Product/GetProduct/@i.Id">Просмотреть</a>
+        </div><br />
+        }
+    </div>
+</body>
+</html>

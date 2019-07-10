@@ -1,0 +1,17 @@
+﻿body {
+    padding: 0;
+}
+
+.Center {
+    margin: auto;
+}
+
+.Title {
+    width: 600px;
+    text-align: center;
+}
+
+.Product {
+    border: solid gray 1px;
+    width: 1000px;
+}
