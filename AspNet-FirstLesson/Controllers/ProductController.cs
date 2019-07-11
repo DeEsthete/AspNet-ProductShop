@@ -1,4 +1,5 @@
-﻿using AspNet_FirstLesson.Models;
+﻿using AspNet_FirstLesson.Data;
+using AspNet_FirstLesson.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,36 +11,35 @@ namespace AspNet_FirstLesson.Controllers
 {
     public class ProductController : Controller
     {
-        List<Product> products = new List<Product>();
+        ProductContext db = new ProductContext();
 
         public ProductController()
         {
-            Product product = new Product { Id = 0, Name = "Хлеб", Price = 60, Producer = new Producer { Name = "Хлебозавод #1" } };
-            Product product1 = new Product { Id = 1, Name = "Молоко", Price = 60, Producer = new Producer { Name = "Молокозавод #1" } };
-            products.Add(product);
-            products.Add(product1);
+            db.Roles.ToList();
         }
 
-        // GET: Product
+        /*Заполнение БД начальными данными при переходе по пути: "/Product/FillBd"*/
+        public string FillBd()
+        {
+            db.FillBd(db);
+            return "БД успешно заполнена";
+        }
+
         public ViewResult Index()
         {
             ViewBag.Title = "ProductShop.com";
             return View();
         }
+
         public ViewResult GetProduct(int id)
         {
-            ViewBag.Product = products.FirstOrDefault(p => p.Id == id);
-            //StringBuilder strBuild = new StringBuilder();
-            //foreach(var i in products)
-            //{
-            //    strBuild.Append("<span style='color:green'>" + i.GetString() + "</span><br>");
-            //}
-            //return strBuild.ToString();
+            ViewBag.Product = db.Products.FirstOrDefault(p => p.Id == id);
             return View();
         }
+
         public ViewResult GetProducts()
         {
-            ViewBag.Products = products;
+            ViewBag.Products = db.Products.ToList();
             return View();
         }
 
