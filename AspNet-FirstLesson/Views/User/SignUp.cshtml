@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignUp</title>
+</head>
+<body>
+    <div>
+        <form action="~/User/SignUp" method="post">
+            <input type="text" name="Name" value="" placeholder="Введите имя" /><br />
+            <input type="text" name="Login" value="" placeholder="Введите логин" /><br />
+            <input type="text" name="Password" value="" placeholder="Введите пароль" /><br />
+            <input hidden type="Number" name="RoleId" value="" placeholder="Введите id роли" /><br />
+            <button type="submit">Создать</button><br />
+        </form>
+    </div>
+</body>
+</html>

@@ -14,6 +14,7 @@
         {
         }
 
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Producer> Producers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
@@ -32,8 +33,12 @@
             Producer producer1 = new Producer { Name = "Молокозавод #1" };
             db.Producers.Add(producer);
             db.Producers.Add(producer1);
-            Product product = new Product { Name = "Хлеб", Price = 65, ProducerId = 1 };
-            Product product1 = new Product { Name = "Молоко", Price = 240, ProducerId = 2 };
+            Category category = new Category { Name = "Хлебо-булочные изделия" };
+            Category category1 = new Category { Name = "Молочные изделия" };
+            db.Categories.Add(category);
+            db.Categories.Add(category1);
+            Product product = new Product { Name = "Хлеб", Price = 65, ProducerId = 1, CategoryId = 1 };
+            Product product1 = new Product { Name = "Молоко", Price = 240, ProducerId = 2, CategoryId = 2 };
             db.Products.Add(product);
             db.Products.Add(product1);
             User user = new User { Name = "Leha", Login = "Leha90", Password = "123456", RoleId = 1 };
@@ -44,6 +49,10 @@
             db.Users.Add(user2);
             db.SaveChanges();
         }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    FillBd(this);
+        //}
     }
 }
- 

@@ -8,5 +8,6 @@ namespace AspNet_FirstLesson.Models
     public class Producer : Entity
     {
         public string Description { get; set; }
+        public IEnumerable<Product> Products { get; set; }
     }
 }

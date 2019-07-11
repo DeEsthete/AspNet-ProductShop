@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddProduct</title>
+</head>
+<body>
+    <div>
+        <form action="~/AdminPanel/CreateProduct" method="post">
+            <input type="text" name="Name" value="" placeholder="Введите имя" /><br />
+            <input type="number" name="Price" value="" placeholder="Введите цену" /><br />
+            <input type="number" name="CategoryId" value="" placeholder="Введите id категории" /><br />
+            <input type="number" name="ProducerId" value="" placeholder="Введите id производителя" /><br />
+            <button type="submit">Создать</button><br />
+        </form>
+    </div>
+</body>
+</html>

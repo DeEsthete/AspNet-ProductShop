@@ -1,34 +1,14 @@
 ﻿body {
     padding: 0;
     font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
 }
-
 .Center {
     margin: auto;
 }
-
-.Categories{
-    /*width: 600px;*/
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.Category{
-    margin-left: 20px;
-}
-
 .Title {
-    width: 600px;
-    text-align: center;
+    width: 1000px;
 }
-
-.Product {
-    border: solid gray 1px;
-    width: 500px;
-    padding: 5px;
-    text-align: center;
-}
-
 a:link, a:visited {
     background-color: #63afff;
     color: white;
@@ -37,5 +17,6 @@ a:link, a:visited {
     text-decoration: none;
     display: inline-block;
     border-radius: 5px;
-    margin: auto;
+    width: 500px;
+    margin-bottom: 20px;
 }

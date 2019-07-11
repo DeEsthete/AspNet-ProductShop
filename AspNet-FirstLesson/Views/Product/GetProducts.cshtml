@@ -9,11 +9,19 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/GetProducts.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <title>GetProducts</title>
 </head>
 <body>
     <div class="Center Title">
         <h1>ProductShop.com</h1>
+    </div>
+    <div class="Center Categories">
+        <a class="Category" href="~/Product/GetProducts/">Все</a>
+        @foreach (var i in ViewBag.Categories)
+        {
+            <a class="Category" href="~/Product/GetProducts/@i.Id">@i.Name</a>
+        }
     </div>
     <div>
         @foreach (var i in ViewBag.Products)

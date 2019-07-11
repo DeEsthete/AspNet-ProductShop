@@ -5,8 +5,8 @@ using System.Web;
 
 namespace AspNet_FirstLesson.Models
 {
-    public class Role : Entity
+    public class Category : Entity
     {
-        public virtual IEnumerable<User> Users { get; set; }
+        public virtual IEnumerable<Product> Products { get; set; }
     }
 }

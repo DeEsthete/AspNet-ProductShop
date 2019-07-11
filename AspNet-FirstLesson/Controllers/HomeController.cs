@@ -11,9 +11,9 @@ namespace AspNet_FirstLesson.Controllers
         // GET: Home
 
         //это наз. action
-        public string Index()
+        public ActionResult Index()
         {
-            return "HelloWorld";
+            return View();
         }
         public string Test()
         {

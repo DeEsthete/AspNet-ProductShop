@@ -3,6 +3,7 @@ using AspNet_FirstLesson.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -31,15 +32,32 @@ namespace AspNet_FirstLesson.Controllers
             return View();
         }
 
-        public ViewResult GetProduct(int id)
+        public ActionResult GetProduct(int? id)
         {
-            ViewBag.Product = db.Products.FirstOrDefault(p => p.Id == id);
+            Product product = null;
+            if (id != null)
+            {
+                product = db.Products.FirstOrDefault(p => p.Id == id);
+            }
+            if (product != null)
+            {
+                ViewBag.Product = product;
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
             return View();
         }
 
-        public ViewResult GetProducts()
+        public ViewResult GetProducts(int? id)
         {
-            ViewBag.Products = db.Products.ToList();
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Products = db.Products.Where(c => c.Id == id);
+            if (id == null)
+            {
+                ViewBag.Products = db.Products.ToList();
+            }
             return View();
         }
 
