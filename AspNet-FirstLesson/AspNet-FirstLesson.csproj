@@ -137,6 +137,9 @@
     <Content Include="Views\User\SignUp.cshtml" />
     <Content Include="Views\User\SuccessfulRegistration.cshtml" />
     <Content Include="Views\AdminPanel\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\AdminPanel\EditProducts.cshtml" />
+    <Content Include="Views\AdminPanel\EditProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

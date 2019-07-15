@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/AddForm.css" rel="stylesheet" />
+    <title>EditProduct</title>
+</head>
+<body>
+    <div>
+        <div><h1>Редактирование продукта</h1></div>
+        <form action="~/AdminPanel/EditProduct" method="post">
+            <input value="@ViewBag.Product.Name" type="text" name="Name" placeholder="Введите имя" /><br />
+            <input value="@ViewBag.Product.Price" type="number" name="Price" placeholder="Введите цену" /><br />
+            <input value="@ViewBag.Product.CategoryId" type="number" name="CategoryId" placeholder="Введите id категории" /><br />
+            <input value="@ViewBag.Product.ProducerId" type="number" name="ProducerId" placeholder="Введите id производителя" /><br />
+            <button type="submit">Создать</button><br />
+        </form>
+    </div>
+</body>
+</html>

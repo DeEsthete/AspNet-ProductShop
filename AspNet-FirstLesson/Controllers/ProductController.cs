@@ -53,7 +53,7 @@ namespace AspNet_FirstLesson.Controllers
         public ViewResult GetProducts(int? id)
         {
             ViewBag.Categories = db.Categories.ToList();
-            ViewBag.Products = db.Products.Where(c => c.Id == id);
+            ViewBag.Products = db.Products.Where(c => c.CategoryId == id);
             if (id == null)
             {
                 ViewBag.Products = db.Products.ToList();

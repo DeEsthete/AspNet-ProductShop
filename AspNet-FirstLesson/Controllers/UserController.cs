@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -27,18 +28,21 @@ namespace AspNet_FirstLesson.Controllers
         [HttpPost]
         public ActionResult SignUp(User user)
         {
-            User user1 = db.Users.FirstOrDefault(u => u.Login == user.Login);
-
-            if (user1 == null)
+            if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return new RedirectResult("~/User/SuccessfulRegistration");
+                User user1 = db.Users.FirstOrDefault(u => u.Login == user.Login);
+                if (user1 == null)
+                {
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    return new RedirectResult("~/User/SuccessfulRegistration");
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
             }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            return View("SignUp");
         }
     }
 }

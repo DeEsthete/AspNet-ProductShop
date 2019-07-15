@@ -42,6 +42,24 @@ namespace AspNet_FirstLesson.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult EditProducts(int? id)
+        {
+            ViewBag.Categories = db.Categories.ToList();
+            ViewBag.Products = db.Products.Where(c => c.CategoryId == id);
+            if (id == null)
+            {
+                ViewBag.Products = db.Products.ToList();
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult EditProduct(int? id)
+        {
+            return View();
+        }
         #endregion
 
         #region Posts

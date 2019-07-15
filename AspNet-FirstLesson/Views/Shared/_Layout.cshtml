@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Master.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <title>_Layout</title>
+</head>
+<body>
+    <div class="Header">
+        <div class="Logo">
+            <h1>HightFood.com</h1>
+        </div>
+        <div class="Menu">
+            <a class="Center" href="~/Product/GetProducts">Наши продукты</a>
+            <a class="Center" href="~/Home/SignIn">Войти</a>
+            <a class="Center" href="~/User/SignUp">Регистрация</a>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -11,7 +11,7 @@ namespace AspNet_FirstLesson.Models
         [Required]
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Поле имя должно быть заполнено")]
         public string Name { get; set; }
     }
 }

@@ -1,6 +1,7 @@
-﻿
+﻿@using AspNet_FirstLesson.Models;
+@model User
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -8,7 +9,6 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/Master.css" rel="stylesheet" />
     <link href="~/Content/AddForm.css" rel="stylesheet" />
     <title>SignUp</title>
 </head>
@@ -18,8 +18,10 @@
         <form action="~/User/SignUp" method="post">
             <input type="text" name="Name" value="" placeholder="Введите имя" /><br />
             <input type="text" name="Login" value="" placeholder="Введите логин" /><br />
+            @Html.ValidationMessageFor(model => model.Login)<br/>
             <input type="text" name="Password" value="" placeholder="Введите пароль" /><br />
-            <input hidden type="Number" name="RoleId" value="" placeholder="Введите id роли" /><br />
+            @Html.ValidationMessageFor(model => model.Password)<br/>
+            <input hidden type="Number" name="RoleId" value="3" placeholder="Введите id роли" /><br />
             <button type="submit">Создать</button><br />
         </form>
     </div>

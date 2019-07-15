@@ -6,12 +6,31 @@
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+.Header {
+    border-bottom: double 1px #f5ce40;
+}
+
+.Logo{
+    position: absolute;
+    left:0;
+    top:0;
+}
+
+.Menu{
+    margin-top: 20px;
+    margin-left:200px;
+}
+
 .CenterArray{
     text-align:center;
 }
 
 .Center {
     margin: auto;
+}
+
+.TextCenter{
+    text-align:center;
 }
 
 a:link, a:visited {
