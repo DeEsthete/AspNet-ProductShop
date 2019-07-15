@@ -17,6 +17,7 @@ namespace AspNet_FirstLesson.Controllers
         {
             return View();
         }
+
         #region Gets
         [HttpGet]
         public ActionResult AddProduct()
@@ -32,6 +33,12 @@ namespace AspNet_FirstLesson.Controllers
 
         [HttpGet]
         public ActionResult AddCategory()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult AddRole()
         {
             return View();
         }

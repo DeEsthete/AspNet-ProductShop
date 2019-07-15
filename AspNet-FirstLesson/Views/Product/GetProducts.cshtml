@@ -8,6 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Master.css" rel="stylesheet" />
     <link href="~/Content/GetProducts.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
     <title>GetProducts</title>
@@ -23,14 +24,14 @@
             <a class="Category" href="~/Product/GetProducts/@i.Id">@i.Name</a>
         }
     </div>
-    <div>
+    <div class="Products Center">
         @foreach (var i in ViewBag.Products)
         {
-        <div class="Center Product">
-            <span>Имя: </span><span>@i.Name</span><br />
-            <span>Цена: </span><span>@i.Price</span><br />
-            <a href="~/Product/GetProduct/@i.Id">Просмотреть</a>
-        </div><br />
+            <div class="Center Product">
+                <span>Имя: </span><span>@i.Name</span><br />
+                <span>Цена: </span><span>@i.Price</span><br />
+                <a href="~/Product/GetProduct/@i.Id">Просмотреть</a>
+            </div>
         }
     </div>
 </body>

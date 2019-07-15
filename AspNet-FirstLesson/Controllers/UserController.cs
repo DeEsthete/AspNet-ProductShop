@@ -19,16 +19,21 @@ namespace AspNet_FirstLesson.Controllers
             return View();
         }
 
+        public ActionResult SuccessfulRegistration()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult SignUp(User user)
         {
             User user1 = db.Users.FirstOrDefault(u => u.Login == user.Login);
 
-            if (user1 != null)
+            if (user1 == null)
             {
-                db.Users.Add(user1);
+                db.Users.Add(user);
                 db.SaveChanges();
-                return new RedirectResult("~/Home/Index");
+                return new RedirectResult("~/User/SuccessfulRegistration");
             }
             else
             {

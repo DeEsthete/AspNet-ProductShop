@@ -3,17 +3,13 @@
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.Center {
-    margin: auto;
-}
-
-.Categories{
+.Categories {
     /*width: 600px;*/
     text-align: center;
     margin-bottom: 40px;
 }
 
-.Category{
+.Category {
     margin-left: 20px;
 }
 
@@ -22,20 +18,23 @@
     text-align: center;
 }
 
-.Product {
-    border: solid gray 1px;
-    width: 500px;
-    padding: 5px;
+.Products {
+    /*width: 2000px;*/
+    /*margin-left: 7px;*/
     text-align: center;
 }
 
-a:link, a:visited {
-    background-color: #63afff;
-    color: white;
-    padding: 12px 20px;
+.Product {
+    border: solid gray 1px;
+    background: rgba(255, 255, 255, 0.20);
+    width: 500px;
+    padding: 5px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
-    border-radius: 5px;
-    margin: auto;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+a:link, a:visited {
+    width: 300px;
 }

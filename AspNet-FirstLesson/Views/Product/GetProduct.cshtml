@@ -8,16 +8,18 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Master.css" rel="stylesheet" />
     <link href="~/Content/GetProduct.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <title>GetProduct</title>
 </head>
 <body>
     <div class="Product">
-        <span>Имя: </span><span>@ViewBag.Product.Name</span><br />
+        <h2>@ViewBag.Product.Name</h2><br />
         <span>Производитель: </span><span>@ViewBag.Product.Producer.Name</span><br />
-        <span>Категория: </span><span>@ViewBag.Product.Category.Name</span>
+        <span>Категория: </span><span>@ViewBag.Product.Category.Name</span><br />
         <span>Цена: </span><span>@ViewBag.Product.Price</span><br />
+        <a class="center" href="~/Product/GetProducts">Назад</a>
     </div>
 </body>
 </html>

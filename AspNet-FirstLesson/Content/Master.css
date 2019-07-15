@@ -1,0 +1,27 @@
+﻿body {
+    color: #f5ce40;
+    background-image: url('Img/dark-triangles.png');
+    background-repeat: repeat;
+    padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.CenterArray{
+    text-align:center;
+}
+
+.Center {
+    margin: auto;
+}
+
+a:link, a:visited {
+    background-color: #f5ce40;
+    color: black;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    width: 500px;
+    margin-bottom: 20px;
+}

@@ -4,9 +4,14 @@
     padding: 0;
 }
 .Product {
-    border: solid black 1px;
+    /*border: solid black 1px;*/
     width: 350px;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     margin: auto;
+}
+
+a:link, a:visited {
+    margin-top:20px;
+    width: 300px;
 }

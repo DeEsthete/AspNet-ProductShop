@@ -96,9 +96,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AddForm.css" />
     <Content Include="Content\GetProduct.css" />
     <Content Include="Content\GetProducts.css" />
     <Content Include="Content\HomeIndex.css" />
+    <Content Include="Content\Img\dark-triangles.png" />
+    <Content Include="Content\Master.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -132,6 +135,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\AdminPanel\AddRole.cshtml" />
     <Content Include="Views\User\SignUp.cshtml" />
+    <Content Include="Views\User\SuccessfulRegistration.cshtml" />
+    <Content Include="Views\AdminPanel\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -141,7 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Img\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

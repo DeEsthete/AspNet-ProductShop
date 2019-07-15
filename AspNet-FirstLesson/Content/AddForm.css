@@ -1,0 +1,15 @@
+﻿body {
+    text-align: center;
+}
+
+input {
+    font-size: 20px;
+    margin-bottom: 7px;
+    width: 250px;
+}
+
+button {
+    margin-top: 20px;
+    font-size: 20px;
+    width: 300px;
+}

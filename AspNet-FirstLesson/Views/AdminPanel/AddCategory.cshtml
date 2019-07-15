@@ -8,10 +8,13 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Master.css" rel="stylesheet" />
+    <link href="~/Content/AddForm.css" rel="stylesheet" />
     <title>AddCategory</title>
 </head>
 <body>
     <div>
+        <div><h1>Добавление категории</h1></div>
         <form action="~/AdminPanel/CreateCategory" method="post">
             <input type="text" name="Name" value="" placeholder="Введите имя" /><br />
             <button type="submit">Создать</button><br />

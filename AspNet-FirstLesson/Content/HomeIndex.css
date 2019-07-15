@@ -1,22 +1,7 @@
 ﻿body {
-    padding: 0;
-    font-family: 'Roboto Condensed', sans-serif;
     text-align: center;
 }
-.Center {
-    margin: auto;
-}
+
 .Title {
     width: 1000px;
-}
-a:link, a:visited {
-    background-color: #63afff;
-    color: white;
-    padding: 12px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-    width: 500px;
-    margin-bottom: 20px;
 }
