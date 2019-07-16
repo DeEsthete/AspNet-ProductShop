@@ -313,3 +313,12 @@ C:\Users\djoni\Desktop\AspNet-ProductShop\AspNet-FirstLesson\obj\Debug\AspNet-Fi
 C:\Users\djoni\Desktop\AspNet-ProductShop\AspNet-FirstLesson\obj\Debug\AspNet-FirstLesson.csproj.CopyComplete
 C:\Users\djoni\Desktop\AspNet-ProductShop\AspNet-FirstLesson\obj\Debug\AspNet-FirstLesson.dll
 C:\Users\djoni\Desktop\AspNet-ProductShop\AspNet-FirstLesson\obj\Debug\AspNet-FirstLesson.pdb
+C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\Ninject.dll
+C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\Ninject.Web.Common.dll
+C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\Ninject.Web.Common.WebHost.dll
+C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\Ninject.Web.Mvc.dll
+C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\Ninject.xml
+C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\Ninject.Web.Common.xml
+C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\Ninject.Web.Common.WebHost.xml
+C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\Ninject.Web.Mvc.xml
+C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\ru\EntityFramework.SqlServer.resources.dll

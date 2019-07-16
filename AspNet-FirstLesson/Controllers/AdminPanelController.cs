@@ -1,4 +1,5 @@
 ﻿using AspNet_FirstLesson.Data;
+using AspNet_FirstLesson.Interfaces;
 using AspNet_FirstLesson.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,19 @@ namespace AspNet_FirstLesson.Controllers
 {
     public class AdminPanelController : Controller
     {
-        ProductContext db = new ProductContext();
+        IRepository<Product> productRepository;
+        IRepository<Category> categoryRepository;
+        IRepository<Role> roleRepository;
+        IRepository<Producer> producerRepository;
+
+        public AdminPanelController(IRepository<Product> productRepository, IRepository<Category> categoryRepository, 
+            IRepository<Role> roleRepository, IRepository<Producer> producerRepository)
+        {
+            this.productRepository = productRepository;
+            this.categoryRepository = categoryRepository;
+            this.roleRepository = roleRepository;
+            this.producerRepository = producerRepository;
+        }
 
         public ActionResult Index()
         {
@@ -22,6 +35,7 @@ namespace AspNet_FirstLesson.Controllers
         [HttpGet]
         public ActionResult AddProduct()
         {
+            ViewBag.Categories = categoryRepository.GetAll();
             return View();
         }
 
@@ -46,11 +60,11 @@ namespace AspNet_FirstLesson.Controllers
         [HttpGet]
         public ActionResult EditProducts(int? id)
         {
-            ViewBag.Categories = db.Categories.ToList();
-            ViewBag.Products = db.Products.Where(c => c.CategoryId == id);
+            ViewBag.Categories = categoryRepository.GetAll();
+            ViewBag.Products = productRepository.GetAll().Where(c => c.CategoryId == id);
             if (id == null)
             {
-                ViewBag.Products = db.Products.ToList();
+                ViewBag.Products = productRepository.GetAll().ToList();
             }
             return View();
         }
@@ -66,10 +80,9 @@ namespace AspNet_FirstLesson.Controllers
         [HttpPost]
         public ActionResult CreateRole(Role role)
         {
-            if (db.Roles.FirstOrDefault(r => r.Name == role.Name) == null && ModelState.IsValid)
+            if (roleRepository.GetAll().FirstOrDefault(r => r.Name == role.Name) == null && ModelState.IsValid)
             {
-                db.Roles.Add(role);
-                db.SaveChanges();
+                roleRepository.Add(role);
                 return new RedirectResult("~/AdminPanel/Index");
             }
             else
@@ -81,10 +94,9 @@ namespace AspNet_FirstLesson.Controllers
         [HttpPost]
         public ActionResult CreateProducer(Producer producer)
         {
-            if (db.Producers.FirstOrDefault(p => p.Name == producer.Name) == null && ModelState.IsValid)
+            if (producerRepository.GetAll().FirstOrDefault(p => p.Name == producer.Name) == null && ModelState.IsValid)
             {
-                db.Producers.Add(producer);
-                db.SaveChanges();
+                producerRepository.Add(producer);
                 return new RedirectResult("~/AdminPanel/Index");
             }
             else
@@ -98,8 +110,7 @@ namespace AspNet_FirstLesson.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
+                categoryRepository.Add(category);
                 return new RedirectResult("~/AdminPanel/Index");
             }
             else
@@ -113,8 +124,7 @@ namespace AspNet_FirstLesson.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
-                db.SaveChanges();
+                productRepository.Add(product);
                 return new RedirectResult("~/Product/GetProducts");
             }
             else

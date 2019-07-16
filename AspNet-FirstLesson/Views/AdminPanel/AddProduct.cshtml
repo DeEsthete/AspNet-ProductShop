@@ -9,6 +9,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/AddForm.css" rel="stylesheet" />
+    <link href="~/Content/DropDownMenu.css" rel="stylesheet" />
     <title>AddProduct</title>
 </head>
 <body>
@@ -17,10 +18,20 @@
         <form action="~/AdminPanel/CreateProduct" method="post">
             <input type="text" name="Name" value="" placeholder="Введите имя" /><br />
             <input type="number" name="Price" value="" placeholder="Введите цену" /><br />
+            <div class="dropdown">
+                <span>Категория</span>
+                <div class="dropdown-content">
+                    @foreach (var i in ViewBag.Categories)
+                    {
+                        <button type="button" id="@i.Id" onclick="WriteCategoryId(this)">@i.Id - @i.Name</button>
+                    }
+                </div>
+            </div><br />
             <input type="number" name="CategoryId" value="" placeholder="Введите id категории" /><br />
             <input type="number" name="ProducerId" value="" placeholder="Введите id производителя" /><br />
             <button type="submit">Создать</button><br />
         </form>
     </div>
+    <script src="~/Scripts/AddProduct.js"></script>
 </body>
 </html>

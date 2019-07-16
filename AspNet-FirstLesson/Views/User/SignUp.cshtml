@@ -18,9 +18,10 @@
         <form action="~/User/SignUp" method="post">
             <input type="text" name="Name" value="" placeholder="Введите имя" /><br />
             <input type="text" name="Login" value="" placeholder="Введите логин" /><br />
-            @Html.ValidationMessageFor(model => model.Login)<br/>
-            <input type="text" name="Password" value="" placeholder="Введите пароль" /><br />
-            @Html.ValidationMessageFor(model => model.Password)<br/>
+            @Html.ValidationMessageFor(model => model.Login)<br />
+            <input type="password" name="Password" value="" placeholder="Введите пароль" /><br />
+            <input type="password" name="SecondPassword" value="" placeholder="Повторите пароль" /><br />
+            @Html.ValidationMessageFor(model => model.Password)<br />
             <input hidden type="Number" name="RoleId" value="3" placeholder="Введите id роли" /><br />
             <button type="submit">Создать</button><br />
         </form>

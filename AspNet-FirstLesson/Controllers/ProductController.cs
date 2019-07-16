@@ -1,4 +1,5 @@
 ﻿using AspNet_FirstLesson.Data;
+using AspNet_FirstLesson.Interfaces;
 using AspNet_FirstLesson.Models;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,13 @@ namespace AspNet_FirstLesson.Controllers
 {
     public class ProductController : Controller
     {
-        ProductContext db = new ProductContext();
+        IRepository<Product> productRepository;
+        IRepository<Category> categoryRepository;
 
-        public ProductController()
+        public ProductController(IRepository<Product> productRepository, IRepository<Category> categoryRepository)
         {
-            db.Roles.ToList();
+            this.productRepository = productRepository;
+            this.categoryRepository = categoryRepository;
         }
 
         public ViewResult Index()
@@ -30,7 +33,7 @@ namespace AspNet_FirstLesson.Controllers
             Product product = null;
             if (id != null)
             {
-                product = db.Products.FirstOrDefault(p => p.Id == id);
+                product = productRepository.GetAll().FirstOrDefault(p => p.Id == id);
             }
             if (product != null)
             {
@@ -45,12 +48,12 @@ namespace AspNet_FirstLesson.Controllers
 
         public ViewResult GetProducts(int? id)
         {
-            ViewBag.Categories = db.Categories.ToList();
-            ViewBag.Products = db.Products.Where(c => c.CategoryId == id);
+            ViewBag.Categories = categoryRepository.GetAll().ToList();
+            ViewBag.Products = productRepository.GetAll().Where(c => c.CategoryId == id);
             ViewBag.ThisCategory = id;
             if (id == null)
             {
-                ViewBag.Products = db.Products.ToList();
+                ViewBag.Products = productRepository.GetAll().ToList();
             }
             return View();
         }

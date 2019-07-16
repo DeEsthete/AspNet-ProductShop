@@ -1,4 +1,5 @@
 ﻿using AspNet_FirstLesson.Data;
+using AspNet_FirstLesson.Interfaces;
 using AspNet_FirstLesson.Models;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,13 @@ namespace AspNet_FirstLesson.Controllers
 {
     public class UserController : Controller
     {
-        ProductContext db = new ProductContext();
+        readonly IRepository<User> userRepository;
 
-        // GET: User
+        public UserController(IRepository<User> userRepository)
+        {
+            this.userRepository = userRepository;
+        }
+
         public ActionResult SignUp()
         {
             return View();
@@ -30,11 +35,10 @@ namespace AspNet_FirstLesson.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user1 = db.Users.FirstOrDefault(u => u.Login == user.Login);
+                User user1 = userRepository.GetAll().FirstOrDefault(u => u.Login == user.Login);
                 if (user1 == null)
                 {
-                    db.Users.Add(user);
-                    db.SaveChanges();
+                    userRepository.Add(user);
                     return new RedirectResult("~/User/SuccessfulRegistration");
                 }
                 else
