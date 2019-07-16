@@ -1,6 +1,7 @@
 ﻿using AspNet_FirstLesson.Data;
 using AspNet_FirstLesson.Interfaces;
 using AspNet_FirstLesson.Models;
+using AspNet_FirstLesson.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +32,14 @@ namespace AspNet_FirstLesson.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignUp(User user)
+        public ActionResult SignUp(UserViewModel userViewModel)
         {
             if (ModelState.IsValid)
             {
-                User user1 = userRepository.GetAll().FirstOrDefault(u => u.Login == user.Login);
+                User user1 = userRepository.GetAll().FirstOrDefault(u => u.Login == userViewModel.Login);
                 if (user1 == null)
                 {
+                    User user = userViewModel.GetUser();
                     userRepository.Add(user);
                     return new RedirectResult("~/User/SuccessfulRegistration");
                 }

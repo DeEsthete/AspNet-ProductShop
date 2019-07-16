@@ -20,6 +20,7 @@ namespace AspNet_FirstLesson.Models
 
         [ForeignKey("Role")]
         [Required]
+        [Range(1, int.MaxValue)]
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
     }

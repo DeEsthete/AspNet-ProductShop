@@ -10,9 +10,11 @@ namespace AspNet_FirstLesson.Models
     public class Product : Entity
     {
         [ForeignKey("Producer")]
+        [Range(1, int.MaxValue)]
         public int ProducerId { get; set; }
         public virtual Producer Producer { get; set; }
         [ForeignKey("Category")]
+        [Range(1, int.MaxValue)]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
         [Required]
