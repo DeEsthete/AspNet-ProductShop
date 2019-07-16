@@ -19,13 +19,6 @@ namespace AspNet_FirstLesson.Controllers
             db.Roles.ToList();
         }
 
-        /*Заполнение БД начальными данными при переходе по пути: "/Product/FillBd"*/
-        public string FillBd()
-        {
-            db.FillBd(db);
-            return "БД успешно заполнена";
-        }
-
         public ViewResult Index()
         {
             ViewBag.Title = "ProductShop.com";
@@ -54,6 +47,7 @@ namespace AspNet_FirstLesson.Controllers
         {
             ViewBag.Categories = db.Categories.ToList();
             ViewBag.Products = db.Products.Where(c => c.CategoryId == id);
+            ViewBag.ThisCategory = id;
             if (id == null)
             {
                 ViewBag.Products = db.Products.ToList();

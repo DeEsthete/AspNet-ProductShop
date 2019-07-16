@@ -17,8 +17,14 @@
             <a class="Category" href="~/Product/GetProducts/">Все</a>
             @foreach (var i in ViewBag.Categories)
             {
-                <a class="Category" href="~/Product/GetProducts/@i.Id">@i.Name</a>
-                @if 
+                if (i.Id == ViewBag.ThisCategory)
+                {
+                    <a class="CurrentCategory Category" href="~/Product/GetProducts/@i.Id">-> @i.Name</a>
+                }
+                else
+                {
+                    <a class="Category" href="~/Product/GetProducts/@i.Id">@i.Name</a>
+                }
             }
         </div>
         <div class="Middle Products Center">

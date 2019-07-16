@@ -8,6 +8,10 @@
     position: relative;
 }
 
+.CurrentCategory {
+    color: white;
+}
+
 .Categories {
     /*text-align: center;*/
     width: 375px;
