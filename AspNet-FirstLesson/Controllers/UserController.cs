@@ -34,7 +34,7 @@ namespace AspNet_FirstLesson.Controllers
         [HttpPost]
         public ActionResult SignUp(UserViewModel userViewModel)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && userViewModel.Password == userViewModel.SecondPassword)
             {
                 User user1 = userRepository.GetAll().FirstOrDefault(u => u.Login == userViewModel.Login);
                 if (user1 == null)

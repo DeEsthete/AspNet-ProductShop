@@ -23,5 +23,9 @@ namespace AspNet_FirstLesson.Models
         [Range(1, int.MaxValue)]
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
+        public double Wallet { get; set; }
+        [ForeignKey("Basket")]
+        public int BasketId { get; set; }
+        public virtual Basket Basket { get; set; }
     }
 }

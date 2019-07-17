@@ -29,9 +29,15 @@ namespace AspNet_FirstLesson.Data
             Product product1 = new Product { Name = "Молоко", Price = 240, ProducerId = 2, CategoryId = 2 };
             db.Products.Add(product);
             db.Products.Add(product1);
-            User user = new User { Name = "Leha", Login = "Leha90", Password = "123456", RoleId = 1 };
-            User user1 = new User { Name = "Gena", Login = "GenAdy", Password = "genka000", RoleId = 2 };
-            User user2 = new User { Name = "Miha", Login = "mehanik89", Password = "meh101", RoleId = 3 };
+            Basket basket = new Basket();
+            Basket basket1 = new Basket();
+            Basket basket2 = new Basket();
+            db.Baskets.Add(basket);
+            db.Baskets.Add(basket1);
+            db.Baskets.Add(basket2);
+            User user = new User { Name = "Leha", Login = "Leha90", Password = "123456", RoleId = 1, BasketId = 1 };
+            User user1 = new User { Name = "Gena", Login = "GenAdy", Password = "genka000", RoleId = 2, BasketId = 2 };
+            User user2 = new User { Name = "Miha", Login = "mehanik89", Password = "meh101", RoleId = 3, BasketId = 3 };
             db.Users.Add(user);
             db.Users.Add(user1);
             db.Users.Add(user2);

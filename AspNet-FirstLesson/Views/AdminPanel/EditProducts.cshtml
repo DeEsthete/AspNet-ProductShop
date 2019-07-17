@@ -17,7 +17,7 @@
             <a class="Category" href="~/Product/GetProducts/">Все</a>
             @foreach (var i in ViewBag.Categories)
             {
-                <a class="Category" href="~/Product/GetProducts/@i.Id">@i.Name</a>
+                <a class="Category" href="~/AdminPanel/EditProducts/@i.Id">@i.Name</a>
             }
         </div>
         <div class="Middle Products Center">
@@ -26,7 +26,7 @@
             <div class="Center Product">
                 <span>Id: </span><span>@i.Id</span><br />
                 <span>Имя: </span><span>@i.Name</span><br />
-                <a href="~/Product/GetProduct/@i.Id">Редактировать</a>
+                <a href="~/AdminPanel/EditProduct/@i.Id">Редактировать</a>
             </div>
             }
         </div>

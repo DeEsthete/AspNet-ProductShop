@@ -72,7 +72,21 @@ namespace AspNet_FirstLesson.Controllers
         [HttpGet]
         public ActionResult EditProduct(int? id)
         {
+            Product product = null;
+            if (id != null)
+            {
+                product = productRepository.GetAll().FirstOrDefault(p => p.Id == id);
+            }
+            if (product != null)
+            {
+                ViewBag.Product = product;
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
             return View();
+
         }
         #endregion
 
@@ -125,6 +139,20 @@ namespace AspNet_FirstLesson.Controllers
             if (ModelState.IsValid)
             {
                 productRepository.Add(product);
+                return new RedirectResult("~/Product/GetProducts");
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditProduct(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                productRepository.Edit(product);
                 return new RedirectResult("~/Product/GetProducts");
             }
             else
