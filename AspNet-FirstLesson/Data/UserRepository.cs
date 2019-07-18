@@ -36,6 +36,9 @@ namespace AspNet_FirstLesson.Data
             if (item != null)
             {
                 item.Name = entity.Name;
+                item.Login = entity.Login;
+                item.Password = entity.Password;
+                item.RoleId = entity.RoleId;
                 db.SaveChanges();
             }
         }

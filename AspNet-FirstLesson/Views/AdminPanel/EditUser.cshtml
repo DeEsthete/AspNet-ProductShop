@@ -1,0 +1,30 @@
+﻿@using AspNet_FirstLesson.Models;
+@model User
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/AddForm.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <div><h1>Редактирование</h1></div>
+        <form action="~/AdminPanel/EditUser" method="post">
+            <input type="number" hidden name="Id" value="@Model.Id" placeholder="Введите Id" /><br />
+            <input type="text" name="Name" value="@Model.Name" placeholder="Введите имя" /><br />
+            <input type="text" name="Login" value="@Model.Login" placeholder="Введите логин" /><br />
+            @Html.ValidationMessageFor(model => model.Login)<br />
+            <input type="password" name="Password" value="@Model.Password" placeholder="Введите пароль" /><br />
+            @Html.ValidationMessageFor(model => model.Password)<br />
+            <input type="Number" name="RoleId" value="@Model.RoleId" placeholder="Введите id роли" /><br />
+            <button type="submit">Отредактировать</button><br />
+        </form>
+    </div>
+</body>
+</html>

@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/AddForm.css" rel="stylesheet" />
     <link href="~/Content/DropDownMenu.css" rel="stylesheet" />
+    <link href="~/Content/SelectStyle.css" rel="stylesheet" />
     <title>AddProduct</title>
 </head>
 <body>
@@ -18,20 +19,24 @@
         <form action="~/AdminPanel/CreateProduct" method="post">
             <input type="text" name="Name" value="" placeholder="Введите имя" /><br />
             <input type="number" name="Price" value="" placeholder="Введите цену" /><br />
-            <div class="dropdown">
-                <span>Категория</span>
-                <div class="dropdown-content">
+            <span name="CategoryId" class="custom-dropdown big">
+                <select>
                     @foreach (var i in ViewBag.Categories)
                     {
-                        <button type="button" id="@i.Id" onclick="WriteCategoryId(this)">@i.Id - @i.Name</button>
+                        <option value="@i.Id">@i.Name</option>
                     }
-                </div>
-            </div><br />
-            <input type="number" name="CategoryId" value="" placeholder="Введите id категории" /><br />
-            <input type="number" name="ProducerId" value="" placeholder="Введите id производителя" /><br />
+                </select>
+            </span><br />
+            <span name="ProducerId" class="custom-dropdown big">
+                <select>
+                    @foreach (var i in ViewBag.Producers)
+                    {
+                        <option value="@i.Id">@i.Name</option>
+                    }
+                </select>
+            </span><br />
             <button type="submit">Создать</button><br />
         </form>
     </div>
-    <script src="~/Scripts/AddProduct.js"></script>
 </body>
 </html>

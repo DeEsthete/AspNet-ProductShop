@@ -7,3 +7,12 @@
 Пароль не должен отображатся
 Дописать Repository
 Добавить везде Repoitory
+
+
+Куки может быть пустым или равнятся Null
+HttpContext.Request.Cookies["User"].Value;
+                    HttpContext.Response.Cookies["UserId"].Value = user.Id.ToString();
+                    HttpContext.Response.Cookies["UserLogin"].Value = user.Login.ToString();
+                    HttpContext.Response.Cookies["UserPassword"].Value = user.Password.ToString();
+
+                    Session["UserId"] = "123456";

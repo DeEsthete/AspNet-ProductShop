@@ -115,8 +115,9 @@
     <Content Include="Content\HomeIndex.css" />
     <Content Include="Content\Img\dark-triangles.png" />
     <Content Include="Content\Master.css" />
+    <Content Include="Content\SelectStyle.css" />
+    <Content Include="Content\Entity.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\AddProduct.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\AdminPanel\EditProducts.cshtml" />
     <Content Include="Views\AdminPanel\EditProduct.cshtml" />
+    <Content Include="Views\AdminPanel\EditUsers.cshtml" />
+    <Content Include="Views\AdminPanel\EditUser.cshtml" />
+    <Content Include="Views\AdminPanel\EditProducers.cshtml" />
+    <Content Include="Views\AdminPanel\EditProducer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -177,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

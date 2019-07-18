@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "EditProducer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/AddForm.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <div><h1>Редактирование</h1></div>
+        <form action="~/AdminPanel/EditProducer" method="post">
+            <input type="number" hidden name="Id" value="@ViewBag.Producer.Id" placeholder="Введите Id" /><br />
+            <input type="text" name="Name" value="@ViewBag.Producer.Name" placeholder="Введите имя" /><br />
+            <button type="submit">Отредактировать</button><br />
+        </form>
+    </div>
+</body>
+</html>

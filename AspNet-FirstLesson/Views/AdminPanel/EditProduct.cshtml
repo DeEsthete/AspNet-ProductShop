@@ -15,10 +15,29 @@
     <div>
         <div><h1>Редактирование продукта</h1></div>
         <form action="~/AdminPanel/EditProduct" method="post">
+            <input value="@ViewBag.Product.Id" type="number" name="Id" placeholder="Введите Id" /><br />
             <input value="@ViewBag.Product.Name" type="text" name="Name" placeholder="Введите имя" /><br />
             <input value="@ViewBag.Product.Price" type="number" name="Price" placeholder="Введите цену" /><br />
-            <input value="@ViewBag.Product.CategoryId" type="number" name="CategoryId" placeholder="Введите id категории" /><br />
-            <input value="@ViewBag.Product.ProducerId" type="number" name="ProducerId" placeholder="Введите id производителя" /><br />
+            <span name="CategoryId" class="custom-dropdown big">
+                <select>
+                    @foreach (var i in ViewBag.Categories)
+                    {
+                        if (ViewBag.Product.CategoryId == i.Id)
+                        {
+                            <option selected value="@i.Id">@i.Name</option>
+                        }
+                        <option value="@i.Id">@i.Name</option>
+                    }
+                </select>
+            </span><br />
+            <span name="ProducerId" class="custom-dropdown big">
+                <select>
+                    @foreach (var i in ViewBag.Producers)
+                    {
+                        <option value="@i.Id">@i.Name</option>
+                    }
+                </select>
+            </span><br />
             <button type="submit">Отредактировать</button><br />
         </form>
     </div>

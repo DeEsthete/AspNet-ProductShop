@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "EditUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Entity.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="EntityArray">
+        @foreach(var i in ViewBag.Users)
+        {
+            <div class="Entity">
+                <span>Id: </span><span>@i.Id</span><br />
+                <span>Login: </span><span>@i.Login</span><br />
+                <a href="~/AdminPanel/EditUser/@i.Id">Редактировать</a>
+            </div>
+        }
+    </div>
+</body>
+</html>

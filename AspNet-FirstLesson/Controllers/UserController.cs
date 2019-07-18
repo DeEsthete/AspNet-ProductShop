@@ -41,6 +41,7 @@ namespace AspNet_FirstLesson.Controllers
                 {
                     User user = userViewModel.GetUser();
                     userRepository.Add(user);
+
                     return new RedirectResult("~/User/SuccessfulRegistration");
                 }
                 else
