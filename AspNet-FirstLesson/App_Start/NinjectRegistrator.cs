@@ -16,9 +16,8 @@ namespace AspNet_FirstLesson.App_Start
             Bind<ProductContext>().To<ProductContext>();
 
             Bind<IRepository<Product>>().To<ProductRepository>();
-            Bind<IRepository<User>>().To<UserRepository>();
             Bind<IRepository<Producer>>().To<ProducerRepository>();
-            Bind<IRepository<Role>>().To<RoleRepository>();
+            //Bind<IRepository<Role>>().To<RoleRepository>();
             Bind<IRepository<Category>>().To<CategoryRepository>();
         }
     }

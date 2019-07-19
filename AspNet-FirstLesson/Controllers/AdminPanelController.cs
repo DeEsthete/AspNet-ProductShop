@@ -2,6 +2,9 @@
 using AspNet_FirstLesson.Interfaces;
 using AspNet_FirstLesson.Models;
 using AspNet_FirstLesson.ViewModels;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,18 +18,17 @@ namespace AspNet_FirstLesson.Controllers
     {
         IRepository<Product> productRepository;
         IRepository<Category> categoryRepository;
-        IRepository<Role> roleRepository;
         IRepository<Producer> producerRepository;
-        IRepository<User> userRepository;
+
+        private AppUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+        private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
         public AdminPanelController(IRepository<Product> productRepository, IRepository<Category> categoryRepository, 
-            IRepository<Role> roleRepository, IRepository<Producer> producerRepository, IRepository<User> userRepository)
+            IRepository<Producer> producerRepository)
         {
             this.productRepository = productRepository;
             this.categoryRepository = categoryRepository;
-            this.roleRepository = roleRepository;
             this.producerRepository = producerRepository;
-            this.userRepository = userRepository;
         }
 
         public ActionResult Index()
@@ -35,10 +37,11 @@ namespace AspNet_FirstLesson.Controllers
         }
 
         #region User
+        /*
         [HttpGet]
         public ActionResult EditUsers()
         {
-            ViewBag.Users = userRepository.GetAll();
+            ViewBag.Users = UserManager.Users.ToList();
             return View();
         }
 
@@ -47,7 +50,8 @@ namespace AspNet_FirstLesson.Controllers
         {
             if (id != null)
             {
-                return View(userRepository.GetEntity(id.Value));
+                //userRepository.GetEntity(id.Value)
+                return View();
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
@@ -65,6 +69,7 @@ namespace AspNet_FirstLesson.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
         }
+        */
         #endregion
 
         #region Product
@@ -216,6 +221,7 @@ namespace AspNet_FirstLesson.Controllers
         #endregion
 
         #region Role
+        /*
         [HttpGet]
         public ActionResult AddRole()
         {
@@ -235,6 +241,7 @@ namespace AspNet_FirstLesson.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
         }
+        */
         #endregion
     }
 }

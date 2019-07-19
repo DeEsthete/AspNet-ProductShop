@@ -2,11 +2,16 @@
 using AspNet_FirstLesson.Interfaces;
 using AspNet_FirstLesson.Models;
 using AspNet_FirstLesson.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,42 +19,71 @@ namespace AspNet_FirstLesson.Controllers
 {
     public class UserController : Controller
     {
-        readonly IRepository<User> userRepository;
+        private AppUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+        private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
-        public UserController(IRepository<User> userRepository)
+        [HttpGet]
+        public ActionResult SignIn()
         {
-            this.userRepository = userRepository;
+            return View();
         }
 
+        [HttpGet]
         public ActionResult SignUp()
         {
             return View();
         }
 
+        [HttpGet]
         public ActionResult SuccessfulRegistration()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult SignUp(UserViewModel userViewModel)
+        public async Task<ActionResult> SignIn(LoginViewModel loginModel)
         {
-            if (ModelState.IsValid && userViewModel.Password == userViewModel.SecondPassword)
+            if (ModelState.IsValid)
             {
-                User user1 = userRepository.GetAll().FirstOrDefault(u => u.Login == userViewModel.Login);
-                if (user1 == null)
+                var user = UserManager.Users.FirstOrDefault(u => u.UserName == loginModel.Username);
+                if (user == null)
                 {
-                    User user = userViewModel.GetUser();
-                    userRepository.Add(user);
+                    return new RedirectResult("/User/SignUp");
+                }
 
-                    return new RedirectResult("~/User/SuccessfulRegistration");
+                ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                AuthenticationManager.SignIn(new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                }, claim);
+
+                return new RedirectResult("/Product/GetProducts");
+            }
+            else
+            {
+                return View(loginModel);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> SignUp(RegistrationViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new User { UserName = model.Username, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    return new RedirectResult("/User/SuccessfulRegistration");
                 }
                 else
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return View(model);
                 }
+
             }
-            return View("SignUp");
+
+            return View(model);
         }
     }
 }
