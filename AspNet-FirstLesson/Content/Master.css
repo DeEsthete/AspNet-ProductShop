@@ -10,27 +10,39 @@
     border-bottom: double 1px #f5ce40;
 }
 
-.Logo{
+.Logo {
     position: absolute;
-    left:0;
-    top:0;
+    left: 0;
+    top: 0;
 }
 
-.Menu{
+.Menu {
     margin-top: 20px;
-    margin-left:200px;
+    margin-left: 200px;
 }
 
-.CenterArray{
-    text-align:center;
+.CenterArray {
+    text-align: center;
 }
 
 .Center {
     margin: auto;
 }
 
-.TextCenter{
-    text-align:center;
+.TextCenter {
+    text-align: center;
+}
+
+.mainA:link, a:visited {
+    background-color: #f5ce40;
+    color: black;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    width: 150px;
+    margin-bottom: 20px;
 }
 
 a:link, a:visited {
@@ -41,6 +53,17 @@ a:link, a:visited {
     text-decoration: none;
     display: inline-block;
     border-radius: 5px;
-    width: 500px;
+    width: 200px;
     margin-bottom: 20px;
+}
+
+.UserDiv {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: solid 5px #f5ce40;
+    background-color: #f5ce40;
+    height: 30px;
+    width: 150px;
+    font-size: 20px;
 }

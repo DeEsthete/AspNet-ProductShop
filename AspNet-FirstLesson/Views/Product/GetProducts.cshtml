@@ -14,16 +14,16 @@
 <body>
     <div class="MiddleFather">
         <div class="Middle Center Categories">
-            <a class="Category" href="~/Product/GetProducts/">Все</a>
+            <a class="Category categoryA" href="~/Product/GetProducts/">Все</a>
             @foreach (var i in ViewBag.Categories)
             {
                 if (i.Id == ViewBag.ThisCategory)
                 {
-                    <a class="CurrentCategory Category" href="~/Product/GetProducts/@i.Id">-> @i.Name</a>
+                    <a class="SelectedCategory Category categoryA" href="~/Product/GetProducts/@i.Id">-> @i.Name</a>
                 }
                 else
                 {
-                    <a class="Category" href="~/Product/GetProducts/@i.Id">@i.Name</a>
+                    <a class="Category categoryA" href="~/Product/GetProducts/@i.Id">@i.Name</a>
                 }
             }
         </div>

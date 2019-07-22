@@ -8,7 +8,7 @@
     position: relative;
 }
 
-.CurrentCategory {
+.SelectedCategory {
     color: white;
 }
 
@@ -48,6 +48,6 @@
     margin-bottom: 5px;
 }
 
-a:link, a:visited {
+.categoryA:link, a:visited {
     width: 300px;
 }

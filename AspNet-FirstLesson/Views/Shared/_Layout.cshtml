@@ -1,5 +1,6 @@
 ﻿
 @{
+    @ViewBag.Title = "HighShop.com";
     Layout = null;
 }
 
@@ -10,7 +11,7 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/Master.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
-    <title>_Layout</title>
+    <title>@ViewBag.Title</title>
 </head>
 <body>
     <div class="Header">
@@ -18,10 +19,22 @@
             <h1>HightFood.com</h1>
         </div>
         <div class="Menu">
-            <a class="Center" href="~/Product/GetProducts">Наши продукты</a>
-            <a class="Center" href="~/User/SignIn">Войти</a>
-            <a class="Center" href="~/User/SignUp">Регистрация</a>
+            <a class="Center mainA" href="~/Product/GetProducts">Наши продукты</a>
+            @if (!User.Identity.IsAuthenticated && User.IsInRole("admin"))
+            {
+                <a class="Center mainA" href="~/User/SignIn">Админка</a>
+            }
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a class="Center mainA" href="~/User/SignIn">Войти</a>
+                <a class="Center mainA" href="~/User/SignUp">Регистрация</a>
+            }
+            else
+            {
+                <a class="Center mainA" href="~/User/SignOut">Выйти</a>
+            }
         </div>
+        <a class="UserDiv" href="~/User/Info">@User.Identity.Name</a>
     </div>
     <div>
         @RenderBody()

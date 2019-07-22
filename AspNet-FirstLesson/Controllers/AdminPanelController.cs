@@ -11,15 +11,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AspNet_FirstLesson.Controllers
 {
+    [Authorize(Roles = "creator,admin")]
     public class AdminPanelController : Controller
     {
-        IRepository<Product> productRepository;
-        IRepository<Category> categoryRepository;
-        IRepository<Producer> producerRepository;
+        readonly IRepository<Product> productRepository;
+        readonly IRepository<Category> categoryRepository;
+        readonly IRepository<Producer> producerRepository;
 
+        private AppRolesManager RolesManager => HttpContext.GetOwinContext().GetUserManager<AppRolesManager>();
         private AppUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
@@ -37,7 +40,6 @@ namespace AspNet_FirstLesson.Controllers
         }
 
         #region User
-        /*
         [HttpGet]
         public ActionResult EditUsers()
         {
@@ -46,11 +48,11 @@ namespace AspNet_FirstLesson.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditUser(int? id)
+        public ActionResult EditUser(string id)
         {
-            if (id != null)
+            if (string.IsNullOrEmpty(id))
             {
-                //userRepository.GetEntity(id.Value)
+                UserManager.Users.FirstOrDefault(u => u.Id == id);
                 return View();
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -61,7 +63,7 @@ namespace AspNet_FirstLesson.Controllers
         {
             if (ModelState.IsValid)
             {
-                userRepository.Edit(user);
+                UserManager.Update(user);
                 return new RedirectResult("~/AdminPanel/EditUsers");
             }
             else
@@ -69,7 +71,7 @@ namespace AspNet_FirstLesson.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
         }
-        */
+
         #endregion
 
         #region Product
@@ -218,30 +220,6 @@ namespace AspNet_FirstLesson.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
         }
-        #endregion
-
-        #region Role
-        /*
-        [HttpGet]
-        public ActionResult AddRole()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult CreateRole(Role role)
-        {
-            if (roleRepository.GetAll().FirstOrDefault(r => r.Name == role.Name) == null && ModelState.IsValid)
-            {
-                roleRepository.Add(role);
-                return new RedirectResult("~/AdminPanel/Index");
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-        }
-        */
         #endregion
     }
 }

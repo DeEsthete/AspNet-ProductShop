@@ -3,6 +3,7 @@ using AspNet_FirstLesson.Interfaces;
 using AspNet_FirstLesson.Models;
 using AspNet_FirstLesson.ViewModels;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
@@ -20,12 +21,25 @@ namespace AspNet_FirstLesson.Controllers
     public class UserController : Controller
     {
         private AppUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+
+        private AppRolesManager RolesManager => HttpContext.GetOwinContext().GetUserManager<AppRolesManager>();
+
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
         [HttpGet]
         public ActionResult SignIn()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult SignOut()
+        {
+            if (User.Identity.IsAuthenticated && User.Identity != null)
+            {
+                AuthenticationManager.SignOut();
+            }
+            return new RedirectResult("~/User/SignIn");
         }
 
         [HttpGet]
@@ -37,6 +51,17 @@ namespace AspNet_FirstLesson.Controllers
         [HttpGet]
         public ActionResult SuccessfulRegistration()
         {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult UserInfo()
+        {
+            var user = UserManager.Users.FirstOrDefault(u => u.Id == User.Identity.GetUserId());
+            if (user != null)
+            {
+                ViewBag.User = user;
+            }
             return View();
         }
 
@@ -52,6 +77,7 @@ namespace AspNet_FirstLesson.Controllers
                 }
 
                 ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                AuthenticationManager.SignOut();
                 AuthenticationManager.SignIn(new AuthenticationProperties
                 {
                     IsPersistent = true,
@@ -74,15 +100,18 @@ namespace AspNet_FirstLesson.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    if (!UserManager.Users.Any())
+                    {
+                        UserManager.AddToRole(user.Id, "creator");
+                    }
+                    UserManager.AddToRole(user.Id, "user");
                     return new RedirectResult("/User/SuccessfulRegistration");
                 }
                 else
                 {
                     return View(model);
                 }
-
             }
-
             return View(model);
         }
     }

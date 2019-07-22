@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "UserInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/AddForm.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        <h2>@User.Identity.Name</h2>
+        <span>@ViewBag.User.Email</span>
+        <span>@ViewBag.User.Roles[0].Name</span>
+    </div>
+</body>
+</html>
