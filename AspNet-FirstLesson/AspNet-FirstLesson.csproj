@@ -165,9 +165,11 @@
     <Compile Include="Data\ProductContext.cs" />
     <Compile Include="Data\ProductContextInitializer.cs" />
     <Compile Include="Data\ProductRepository.cs" />
+    <Compile Include="Data\UserBasketRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBasketRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\BasketItem.cs" />

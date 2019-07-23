@@ -46,6 +46,19 @@ namespace AspNet_FirstLesson.Controllers
             return View();
         }
 
+        public ActionResult AddToBasket(int? id)
+        {
+            if (id != null)
+            {
+
+                return new RedirectResult("~/Product/GetProduct/" + id.Value);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+        }
+
         public ViewResult GetProducts(int? id)
         {
             ViewBag.Categories = categoryRepository.GetAll().ToList();
