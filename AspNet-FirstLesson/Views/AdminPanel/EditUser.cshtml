@@ -1,5 +1,5 @@
-﻿@using AspNet_FirstLesson.Models;
-@model User
+﻿@using AspNet_FirstLesson.ViewModels;
+@model EditViewModel
 @{
     ViewBag.Title = "EditUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,13 +16,24 @@
     <div>
         <div><h1>Редактирование</h1></div>
         <form action="~/AdminPanel/EditUser" method="post">
-            <input type="number" hidden name="Id" value="@Model.Id" placeholder="Введите Id" /><br />
-            <input type="text" name="Name" value="@Model.Name" placeholder="Введите имя" /><br />
-            <input type="text" name="Login" value="@Model.Login" placeholder="Введите логин" /><br />
-            @Html.ValidationMessageFor(model => model.Login)<br />
-            <input type="password" name="Password" value="@Model.Password" placeholder="Введите пароль" /><br />
-            @Html.ValidationMessageFor(model => model.Password)<br />
-            <input type="Number" name="RoleId" value="@Model.RoleId" placeholder="Введите id роли" /><br />
+            <input type="text" name="Id" value="@Model.Id" placeholder="Введите Id" /><br />
+            <input type="text" name="UserName" value="@Model.UserName" placeholder="Введите имя" /><br />
+            <input type="text" name="Email" value="@Model.Email" placeholder="Введите имя" /><br />
+            <span name="RoleId" class="custom-dropdown big">
+                <select name="RoleId">
+                    @foreach (var i in ViewBag.Roles)
+                    {
+                        if (User.IsInRole(i.Name))
+                        {
+                            <option selected value="@i.Id">@i.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@i.Id">@i.Name</option>
+                        }
+                    }
+                </select>
+            </span><br />
             <button type="submit">Отредактировать</button><br />
         </form>
     </div>

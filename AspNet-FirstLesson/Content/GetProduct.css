@@ -11,7 +11,7 @@
     margin: auto;
 }
 
-a:link, a:visited {
+.productA:link, a:visited {
     margin-top:20px;
     width: 300px;
 }

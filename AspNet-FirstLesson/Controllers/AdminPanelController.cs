@@ -50,20 +50,27 @@ namespace AspNet_FirstLesson.Controllers
         [HttpGet]
         public ActionResult EditUser(string id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(id))
             {
-                UserManager.Users.FirstOrDefault(u => u.Id == id);
-                return View();
+                ViewBag.Roles = RolesManager.Roles.ToList();
+                var user = new EditViewModel(UserManager.Users.FirstOrDefault(u => u.Id == id));
+                return View(user);
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [HttpPost]
-        public ActionResult EditUser(User user)
+        public ActionResult EditUser(EditViewModel user)
         {
             if (ModelState.IsValid)
             {
-                UserManager.Update(user);
+                var updateUser = UserManager.Users.FirstOrDefault(p => p.Id == user.Id);
+                updateUser.UserName = user.UserName;
+                updateUser.Email = user.Email;
+                var roles = UserManager.GetRoles(updateUser.Id);
+                UserManager.RemoveFromRole(updateUser.Id, roles.First());
+                UserManager.AddToRole(updateUser.Id, RolesManager.FindById(user.RoleId.ToString()).Name);
+                UserManager.Update(updateUser);
                 return new RedirectResult("~/AdminPanel/EditUsers");
             }
             else
