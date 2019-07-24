@@ -7,15 +7,15 @@ using System.Web;
 
 namespace AspNet_FirstLesson.Data
 {
-    public class UserBasketRepository : IBasketRepository<Basket>
+    public class OrderBasketRepository : IBasketRepository<OrderBasket>
     {
         private readonly ProductContext db = new ProductContext();
 
         public bool AddToBasket(int basketId, int productId)
         {
-            if (db.Baskets.FirstOrDefault(b => b.Id == basketId) != null && db.Products.FirstOrDefault(p => p.Id == productId) != null)
+            if (db.OrderBaskets.FirstOrDefault(b => b.Id == basketId) != null && db.Products.FirstOrDefault(p => p.Id == productId) != null)
             {
-                db.BasketItems.Add(new BasketItem { BasketId = basketId, ProductId = productId });
+                db.OrderBasketItems.Add(new OrderBasketItem { OrderBasketId = basketId, ProductId = productId });
                 return true;
             }
             return false;
@@ -23,12 +23,12 @@ namespace AspNet_FirstLesson.Data
 
         public bool RemoveFromBasket(int basketId, int productId)
         {
-            if (db.Baskets.FirstOrDefault(b => b.Id == basketId) != null && db.Products.FirstOrDefault(p => p.Id == productId) != null)
+            if (db.OrderBaskets.FirstOrDefault(b => b.Id == basketId) != null && db.Products.FirstOrDefault(p => p.Id == productId) != null)
             {
-                BasketItem basketItem = db.BasketItems.FirstOrDefault(bi => bi.BasketId == basketId && bi.ProductId == productId);
+                OrderBasketItem basketItem = db.OrderBasketItems.FirstOrDefault(bi => bi.OrderBasketId == basketId && bi.ProductId == productId);
                 if (basketItem != null)
                 {
-                    db.BasketItems.Remove(basketItem);
+                    db.OrderBasketItems.Remove(basketItem);
                     return true;
                 }
             }
@@ -37,7 +37,7 @@ namespace AspNet_FirstLesson.Data
 
         public ICollection<Product> GetAllItems(int basketId)
         {
-            Basket basket = db.Baskets.FirstOrDefault(b => b.Id == basketId);
+            OrderBasket basket = db.OrderBaskets.FirstOrDefault(b => b.Id == basketId);
             if (basket != null)
             {
                 //Не реализованно

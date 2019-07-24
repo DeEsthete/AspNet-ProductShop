@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace AspNet_FirstLesson.Interfaces
 {
-    public interface IBasketRepository
+    public interface IBasketRepository<T> where T : class
     {
         bool AddToBasket(int basketId, int productId);
         bool RemoveFromBasket(int basketId, int productId);
+        ICollection<Product> GetAllItems(int basketId);
     }
 }

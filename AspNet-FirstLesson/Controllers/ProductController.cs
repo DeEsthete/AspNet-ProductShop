@@ -1,6 +1,8 @@
 ﻿using AspNet_FirstLesson.Data;
 using AspNet_FirstLesson.Interfaces;
 using AspNet_FirstLesson.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +17,55 @@ namespace AspNet_FirstLesson.Controllers
     {
         IRepository<Product> productRepository;
         IRepository<Category> categoryRepository;
+        IBasketRepository<Basket> userBasketRepository;
 
-        public ProductController(IRepository<Product> productRepository, IRepository<Category> categoryRepository)
+        private AppUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+
+        public ProductController(IRepository<Product> productRepository, IRepository<Category> categoryRepository, IBasketRepository<Basket> userBasketRepository)
         {
             this.productRepository = productRepository;
             this.categoryRepository = categoryRepository;
+            this.userBasketRepository = userBasketRepository;
         }
 
         public ViewResult Index()
         {
             ViewBag.Title = "ProductShop.com";
             return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult AddToBasket(int? id)
+        {
+            if (id != null)
+            {
+                Product product = productRepository.GetEntity(id.Value);
+                if (product != null)
+                {
+                    User user = UserManager.FindByName(User.Identity.Name);
+                    userBasketRepository.AddToBasket(user.BasketId.Value, id.Value);
+                    return new RedirectResult("~/User/Basket/");
+                }
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult RemoveFromBasket(int?  id)
+        {
+            if (id != null)
+            {
+                Product product = productRepository.GetEntity(id.Value);
+                if (product != null)
+                {
+                    User user = UserManager.FindByName(User.Identity.Name);
+                    userBasketRepository.RemoveFromBasket(user.BasketId.Value, id.Value);
+                    return new RedirectResult("~/User/Basket/");
+                }
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         public ActionResult GetProduct(int? id)
@@ -44,19 +84,6 @@ namespace AspNet_FirstLesson.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
             return View();
-        }
-
-        public ActionResult AddToBasket(int? id)
-        {
-            if (id != null)
-            {
-
-                return new RedirectResult("~/Product/GetProduct/" + id.Value);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-            }
         }
 
         public ViewResult GetProducts(int? id)

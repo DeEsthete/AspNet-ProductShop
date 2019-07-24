@@ -161,6 +161,7 @@
     <Compile Include="Data\AppRolesManager.cs" />
     <Compile Include="Data\AppUserManager.cs" />
     <Compile Include="Data\CategoryRepository.cs" />
+    <Compile Include="Data\OrderBasketRepository.cs" />
     <Compile Include="Data\ProducerRepository.cs" />
     <Compile Include="Data\ProductContext.cs" />
     <Compile Include="Data\ProductContextInitializer.cs" />

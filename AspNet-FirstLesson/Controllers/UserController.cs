@@ -26,6 +26,7 @@ namespace AspNet_FirstLesson.Controllers
 
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
+        
         [HttpGet]
         public ActionResult SignIn()
         {
@@ -62,6 +63,14 @@ namespace AspNet_FirstLesson.Controllers
             {
                 ViewBag.User = user;
             }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Basket()
+        {
+            //Ссылка из Product/AddToBasket
+            //          Product/RemoveFromBasket
             return View();
         }
 
