@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AddForm.css" />
+    <Content Include="Content\Basket.css" />
     <Content Include="Content\DropDownMenu.css" />
     <Content Include="Content\GetProduct.css" />
     <Content Include="Content\GetProducts.css" />
@@ -210,6 +211,7 @@
     <Content Include="Views\AdminPanel\EditProducer.cshtml" />
     <Content Include="Views\User\SignIn.cshtml" />
     <Content Include="Views\User\UserInfo.cshtml" />
+    <Content Include="Views\User\Basket.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

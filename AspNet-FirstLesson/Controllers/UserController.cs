@@ -20,19 +20,29 @@ namespace AspNet_FirstLesson.Controllers
 {
     public class UserController : Controller
     {
+        IRepository<Product> productRepository;
+        IBasketRepository<Basket> userBasketRepository;
+
         private AppUserManager UserManager => HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
 
         private AppRolesManager RolesManager => HttpContext.GetOwinContext().GetUserManager<AppRolesManager>();
 
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
-        
+
+        public UserController(IRepository<Product> productRepository, IBasketRepository<Basket> userBasketRepository)
+        {
+            this.userBasketRepository = userBasketRepository;
+            this.productRepository = productRepository;
+        }
+
         [HttpGet]
         public ActionResult SignIn()
         {
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult SignOut()
         {
@@ -55,22 +65,33 @@ namespace AspNet_FirstLesson.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult UserInfo()
         {
-            var user = UserManager.Users.FirstOrDefault(u => u.Id == User.Identity.GetUserId());
+            var user = UserManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (user != null)
             {
                 ViewBag.User = user;
+                var roles = UserManager.GetRoles(user.Id);
+                ViewBag.Role = roles.First();
             }
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Basket()
         {
-            //Ссылка из Product/AddToBasket
-            //          Product/RemoveFromBasket
+            var user = UserManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            Dictionary<int, int> items = userBasketRepository.GetAllItems(user.BasketId.Value);
+            List<Product> products = new List<Product>();
+            foreach ( var i in items.Keys)
+            {
+                products.Add(productRepository.GetEntity(i));
+            }
+            ViewBag.Items = items;
+            ViewBag.Products = products;
             return View();
         }
 

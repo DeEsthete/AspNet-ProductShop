@@ -16,7 +16,7 @@ namespace AspNet_FirstLesson.Models
         [ForeignKey("OrderBasket")]
         [Required]
         public int OrderBasketId { get; set; }
-        public virtual Basket OrderBasket { get; set; }
+        public virtual OrderBasket OrderBasket { get; set; }
 
         [ForeignKey("Product")]
         [Required]

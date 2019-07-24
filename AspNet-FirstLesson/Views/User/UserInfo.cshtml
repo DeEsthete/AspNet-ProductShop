@@ -12,10 +12,12 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div>
-        <h2>@User.Identity.Name</h2>
-        <span>@ViewBag.User.Email</span>
-        <span>@ViewBag.User.Roles[0].Name</span>
+    <div class="contentDiv">
+        <h2>@User.Identity.Name</h2><br />
+        <span>@ViewBag.User.Email</span><br />
+        <span>@ViewBag.Role</span><br />
+        <a class="basket" href="~/User/Basket">Корзина</a><br />
+        <a class="signOut" href="~/User/SignOut">Выйти</a>
     </div>
 </body>
 </html>

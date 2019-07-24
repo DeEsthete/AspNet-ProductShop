@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Basket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/AddForm.css" rel="stylesheet" />
+    <link href="~/Content/Basket.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="contentDiv">
+        <h1>Корзина</h1><br />
+        @foreach (var i in ViewBag.Products)
+        {
+            <div class="Item">
+                <span>@i.Name</span><br />
+                <span>Цена: </span><span>@i.Price</span><br />
+                <span>Кол-во: </span><span>@ViewBag.Items[i.Id]</span><br />
+                <a href="~/Product/RemoveFromBasket/@i.Id">Удалить</a>
+            </div>
+        }
+        <br />
+        <a href="~/User/UserInfo">Назад</a>
+    </div>
+</body>
+</html>

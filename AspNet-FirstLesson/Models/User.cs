@@ -10,6 +10,8 @@ namespace AspNet_FirstLesson.Models
 {
     public class User : IdentityUser
     {
+        public DateTime BirthDate { get; set; } //ЗДЕСЬ ЕСТЬ ПОДСТАВА
+        public string Country { get; set; }
         public double Wallet { get; set; }
 
         [ForeignKey("Basket")]

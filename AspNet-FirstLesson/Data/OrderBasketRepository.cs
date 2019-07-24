@@ -16,6 +16,7 @@ namespace AspNet_FirstLesson.Data
             if (db.OrderBaskets.FirstOrDefault(b => b.Id == basketId) != null && db.Products.FirstOrDefault(p => p.Id == productId) != null)
             {
                 db.OrderBasketItems.Add(new OrderBasketItem { OrderBasketId = basketId, ProductId = productId });
+                db.SaveChanges();
                 return true;
             }
             return false;
@@ -29,20 +30,15 @@ namespace AspNet_FirstLesson.Data
                 if (basketItem != null)
                 {
                     db.OrderBasketItems.Remove(basketItem);
+                    db.SaveChanges();
                     return true;
                 }
             }
             return false;
         }
 
-        public ICollection<Product> GetAllItems(int basketId)
+        public Dictionary<int, int> GetAllItems(int basketId)
         {
-            OrderBasket basket = db.OrderBaskets.FirstOrDefault(b => b.Id == basketId);
-            if (basket != null)
-            {
-                //Не реализованно
-                throw new NotImplementedException();
-            }
             throw new NotImplementedException();
         }
     }

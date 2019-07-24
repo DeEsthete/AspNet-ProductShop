@@ -44,8 +44,11 @@ namespace AspNet_FirstLesson.Controllers
                 if (product != null)
                 {
                     User user = UserManager.FindByName(User.Identity.Name);
-                    userBasketRepository.AddToBasket(user.BasketId.Value, id.Value);
-                    return new RedirectResult("~/User/Basket/");
+                    bool isOk = userBasketRepository.AddToBasket(user.BasketId.Value, id.Value);
+                    if (isOk)
+                    {
+                        return new RedirectResult("~/User/Basket/");
+                    }
                 }
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -61,8 +64,11 @@ namespace AspNet_FirstLesson.Controllers
                 if (product != null)
                 {
                     User user = UserManager.FindByName(User.Identity.Name);
-                    userBasketRepository.RemoveFromBasket(user.BasketId.Value, id.Value);
-                    return new RedirectResult("~/User/Basket/");
+                    bool isOk = userBasketRepository.RemoveFromBasket(user.BasketId.Value, id.Value);
+                    if (isOk)
+                    {
+                        return new RedirectResult("~/User/Basket/");
+                    }
                 }
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -11,6 +11,8 @@ namespace AspNet_FirstLesson.Interfaces
     {
         bool AddToBasket(int basketId, int productId);
         bool RemoveFromBasket(int basketId, int productId);
-        ICollection<Product> GetAllItems(int basketId);
+
+        //key:Product.Id, value:count
+        Dictionary<int, int> GetAllItems(int basketId);
     }
 }
