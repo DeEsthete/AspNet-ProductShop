@@ -24,5 +24,11 @@ namespace AspNet_FirstLesson.ViewModels
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
         public string PasswordConfirm { get; set; }
+
+        [Required(ErrorMessage = "Обязательное поле")]
+        public DateTime BirthDate { get; set; }
+
+        public string Country { get; set; }
+
     }
 }
