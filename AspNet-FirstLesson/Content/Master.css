@@ -8,6 +8,15 @@
 
 .Header {
     border-bottom: double 1px #f5ce40;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.HeaderInline{
+    display: inline-block;
+    margin-top: 5px;
+    height: 60px;
 }
 
 .Logo {
@@ -17,8 +26,8 @@
 }
 
 .Menu {
-    margin-top: 20px;
-    margin-left: 200px;
+    /*margin-top: 5px;*/
+    margin-left: 10px;
 }
 
 .CenterArray {
@@ -33,7 +42,7 @@
     text-align: center;
 }
 
-.mainA:link, a:visited {
+.mainA:link, .mainA:visited {
     background-color: #f5ce40;
     color: black;
     padding: 12px 20px;
@@ -42,7 +51,7 @@
     display: inline-block;
     border-radius: 5px;
     width: 150px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 a:link, a:visited {
@@ -58,12 +67,17 @@ a:link, a:visited {
 }
 
 .UserDiv {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    border: solid 5px #f5ce40;
-    background-color: #f5ce40;
-    height: 30px;
-    width: 150px;
+    width: 375px;
+    border-right: solid #f5ce40 1px;
+    text-align:center;
+}
+
+.UserA:link, .UserA:visited {
+    border: solid gray 1px;
+    border-radius: 0px;
+    background: rgba(255, 255, 255, 0.25);
+    height: 18px;
+    width: 200px;
     font-size: 20px;
+    color: #f5ce40;
 }

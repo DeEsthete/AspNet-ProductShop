@@ -47,7 +47,7 @@ namespace AspNet_FirstLesson.Controllers
                     bool isOk = userBasketRepository.AddToBasket(user.BasketId.Value, id.Value);
                     if (isOk)
                     {
-                        return new RedirectResult("~/User/Basket/");
+                        return new RedirectResult("~/Product/GetProduct/" + id.Value);
                     }
                 }
             }

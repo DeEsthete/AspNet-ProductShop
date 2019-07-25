@@ -14,26 +14,23 @@
 </head>
 <body>
     <div class="Header">
-        <div class="Logo">
+        @*<div class="Logo">
             <h1>HightFood.com</h1>
-        </div>
-        <div class="Menu">
-            <a class="Center mainA" href="~/Product/GetProducts">Наши продукты</a>
-            @if (!User.Identity.IsAuthenticated && User.IsInRole("admin"))
+        </div>*@
+        <div class="HeaderInline UserDiv">
+            @if (User.Identity.IsAuthenticated)
             {
-                <a class="Center mainA" href="~/User/SignIn">Админка</a>
-            }
-            @if (!User.Identity.IsAuthenticated)
-            {
-                <a class="Center mainA" href="~/User/SignIn">Войти</a>
-                <a class="Center mainA" href="~/User/SignUp">Регистрация</a>
+                <a class="UserA" href="~/User/UserInfo">@User.Identity.Name</a>
             }
             else
             {
-                <a class="Center mainA" href="~/User/SignOut">Выйти</a>
+                <a class="UserA" href="~/User/SignIn">Войти</a>
             }
         </div>
-        <a class="UserDiv" href="~/User/UserInfo">@User.Identity.Name</a>
+        <div class="HeaderInline Menu">
+            <a class="Center mainA" href="~/Product/GetProducts">Наши продукты</a>
+            <a class="Center mainA" href="~/User/SignIn">Админка</a>
+        </div>
     </div>
     <div>
         @RenderBody()

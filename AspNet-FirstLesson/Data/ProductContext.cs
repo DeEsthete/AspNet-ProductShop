@@ -28,5 +28,15 @@
         {
             return new ProductContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().
+                Property(p => p.BirthDate)
+                .HasColumnType("datetime2")
+                .HasPrecision(0)
+                .IsRequired();
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
