@@ -1,4 +1,5 @@
-﻿using AspNet_FirstLesson.Data;
+﻿using AspNet_FirstLesson.Attributes;
+using AspNet_FirstLesson.Data;
 using AspNet_FirstLesson.Interfaces;
 using AspNet_FirstLesson.Models;
 using AspNet_FirstLesson.ViewModels;
@@ -95,6 +96,15 @@ namespace AspNet_FirstLesson.Controllers
             return View();
         }
 
+        [Authorize]
+        [AgeAuthorize(Age = 18)]
+        [HttpGet]
+        public ActionResult Adult()
+        {
+            return View();
+        }
+
+
         [HttpPost]
         public async Task<ActionResult> SignIn(LoginViewModel loginModel)
         {
@@ -106,6 +116,7 @@ namespace AspNet_FirstLesson.Controllers
                     if (UserManager.CheckPassword(user, loginModel.Password))
                     {
                         ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                        claim.AddClaim(new Claim(ClaimTypes.DateOfBirth, user.BirthDate.ToString()));
                         AuthenticationManager.SignOut();
                         AuthenticationManager.SignIn(new AuthenticationProperties
                         {
