@@ -28,13 +28,13 @@ namespace AspNet_FirstLesson.Data
             db.Baskets.Add(basket2);
             db.SaveChanges();
 
-            var user = new User { UserName = "admin1", Email = "admin1@mail.ru", BasketId = 1 };
+            var user = new User { UserName = "admin1", Email = "admin1@mail.ru", BasketId = 1, Country="Россия", BirthDate = DateTime.Now };
             userManager.Create(user, "Qaz/123456");
             userManager.AddToRole(user.Id, "creator");
-            var user1 = new User { UserName = "admin2", Email = "admin2@mail.ru", BasketId = 2 };
+            var user1 = new User { UserName = "admin2", Email = "admin2@mail.ru", BasketId = 2, Country = "Казахстан", BirthDate = DateTime.Now };
             userManager.Create(user1, "Qaz/123456");
             userManager.AddToRole(user1.Id, "admin");
-            var user2 = new User { UserName = "user1", Email = "user1@mail.ru", BasketId = 3 };
+            var user2 = new User { UserName = "user1", Email = "user1@mail.ru", BasketId = 3, Country = "США", BirthDate = DateTime.Now };
             userManager.Create(user2, "Qaz/123456");
             userManager.AddToRole(user2.Id, "user");
 

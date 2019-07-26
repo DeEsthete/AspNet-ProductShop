@@ -19,11 +19,13 @@
             <input type="text" name="Id" value="@Model.Id" placeholder="Введите Id" /><br />
             <input type="text" name="UserName" value="@Model.UserName" placeholder="Введите имя" /><br />
             <input type="text" name="Email" value="@Model.Email" placeholder="Введите имя" /><br />
+            <input type="text" name="Country" value="@Model.Country" placeholder="Введите страну проживания"><br />
+            <input type="date" name="BirthDate" value="@Model.BirthDate"><br />
             <span name="RoleId" class="custom-dropdown big">
                 <select name="RoleId">
                     @foreach (var i in ViewBag.Roles)
                     {
-                        if (User.IsInRole(i.Name))
+                        if (Model.RoleId == i.Id)
                         {
                             <option selected value="@i.Id">@i.Name</option>
                         }

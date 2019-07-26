@@ -17,6 +17,10 @@ namespace AspNet_FirstLesson.ViewModels
         public string Email { get; set; }
         [Required]
         public string RoleId { get; set; }
+        [Required]
+        public string Country { get; set; }
+        [Required]
+        public DateTime BirthDate { get; set; }
 
         public EditViewModel()
         {
@@ -28,6 +32,8 @@ namespace AspNet_FirstLesson.ViewModels
             UserName = user.UserName;
             RoleId = user.Roles.First().RoleId;
             Email = user.Email;
+            Country = user.Country;
+            BirthDate = user.BirthDate;
         }
     }
 }

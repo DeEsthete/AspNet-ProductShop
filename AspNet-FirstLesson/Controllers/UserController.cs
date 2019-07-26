@@ -101,19 +101,28 @@ namespace AspNet_FirstLesson.Controllers
             if (ModelState.IsValid)
             {
                 var user = UserManager.Users.FirstOrDefault(u => u.UserName == loginModel.Username);
-                if (user == null)
+                if (user != null)
+                {
+                    if (UserManager.CheckPassword(user, loginModel.Password))
+                    {
+                        ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                        AuthenticationManager.SignOut();
+                        AuthenticationManager.SignIn(new AuthenticationProperties
+                        {
+                            IsPersistent = true,
+                        }, claim);
+
+                        return new RedirectResult("/Product/GetProducts");
+                    }
+                    else
+                    {
+                        return new RedirectResult("/User/SignIn");
+                    }
+                }
+                else
                 {
                     return new RedirectResult("/User/SignUp");
                 }
-
-                ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-                AuthenticationManager.SignOut();
-                AuthenticationManager.SignIn(new AuthenticationProperties
-                {
-                    IsPersistent = true,
-                }, claim);
-
-                return new RedirectResult("/Product/GetProducts");
             }
             else
             {

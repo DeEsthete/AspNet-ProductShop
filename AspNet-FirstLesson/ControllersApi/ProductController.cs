@@ -14,12 +14,12 @@ using System.Web.Http;
 
 namespace AspNet_FirstLesson.ControllersApi
 {
-    [RoutePrefix("api/product")]
+    [RoutePrefix("api/products")]
     public class ProductController : ApiController
     {
         private readonly IRepository<Product> productRepository = new ProductRepository();
 
-        [Route("GetProduct/{id}")]
+        [Route("{id}")]
         [HttpGet]
         public IHttpActionResult GetProduct(int? id)
         {
@@ -31,22 +31,22 @@ namespace AspNet_FirstLesson.ControllersApi
             return Json(product);
         }
 
-        [Route("GetProducts")]
         [HttpGet]
+        [Route("")]
         public IHttpActionResult GetProducts()
         {
             return Json(productRepository.GetAll().ToList());
         }
 
-        [Route("Add")]
         [HttpPost]
+        [Route("")]
         public void Add(Product product)
         {
             productRepository.Add(product);
         }
 
-        [Route("Delete/{id}")]
-        [HttpPost]
+        [HttpDelete]
+        [Route("{id}")]
         public void Delete(int? id)
         {
             if (id != null)
@@ -55,8 +55,8 @@ namespace AspNet_FirstLesson.ControllersApi
             }
         }
 
-        [Route("Edit")]
-        [HttpPost]
+        [HttpPut]
+        [Route("")]
         public void Edit(Product product)
         {
             productRepository.Edit(product);
