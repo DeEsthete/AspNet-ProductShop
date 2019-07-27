@@ -67,6 +67,8 @@ namespace AspNet_FirstLesson.Controllers
                 var updateUser = UserManager.Users.FirstOrDefault(p => p.Id == user.Id);
                 updateUser.UserName = user.UserName;
                 updateUser.Email = user.Email;
+                updateUser.Country = user.Country;
+                updateUser.BirthDate = user.BirthDate;
                 var roles = UserManager.GetRoles(updateUser.Id);
                 UserManager.RemoveFromRole(updateUser.Id, roles.First());
                 UserManager.AddToRole(updateUser.Id, RolesManager.FindById(user.RoleId.ToString()).Name);

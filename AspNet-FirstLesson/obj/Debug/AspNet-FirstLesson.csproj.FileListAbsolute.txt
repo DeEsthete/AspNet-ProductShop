@@ -375,3 +375,9 @@ C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\System
 C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\System.Net.Http.Formatting.xml
 C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\System.Web.Http.xml
 C:\Users\ПавловЕ\Desktop\AspNet-ProductShop\AspNet-FirstLesson\bin\System.Web.Http.WebHost.xml
+C:\Users\djoni\Desktop 2\AspNet-ProductShop\AspNet-FirstLesson\bin\System.Net.Http.Formatting.dll
+C:\Users\djoni\Desktop 2\AspNet-ProductShop\AspNet-FirstLesson\bin\System.Web.Http.dll
+C:\Users\djoni\Desktop 2\AspNet-ProductShop\AspNet-FirstLesson\bin\System.Web.Http.WebHost.dll
+C:\Users\djoni\Desktop 2\AspNet-ProductShop\AspNet-FirstLesson\bin\System.Net.Http.Formatting.xml
+C:\Users\djoni\Desktop 2\AspNet-ProductShop\AspNet-FirstLesson\bin\System.Web.Http.xml
+C:\Users\djoni\Desktop 2\AspNet-ProductShop\AspNet-FirstLesson\bin\System.Web.Http.WebHost.xml
