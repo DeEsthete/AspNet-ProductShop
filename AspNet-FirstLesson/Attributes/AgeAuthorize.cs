@@ -13,13 +13,16 @@ namespace AspNet_FirstLesson.Attributes
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var claims = httpContext.User.Identity as ClaimsIdentity;
-            var claim = claims.Claims.First(c => c.ValueType == ClaimTypes.DateOfBirth);
-            DateTime userBirthDate = DateTime.Parse(claim.Value);
-            int userAge = int.Parse(((DateTime.Now - userBirthDate).TotalDays / 365).ToString());
-            if (Age == userAge)
+            if (httpContext.User.Identity.IsAuthenticated)
             {
-                return true;
+                var claims = httpContext.User.Identity as ClaimsIdentity;
+                var claim = claims.Claims.Where(c => c.Type == ClaimTypes.DateOfBirth).Select(c => c.Value).SingleOrDefault();
+                DateTime userBirthDate = DateTime.Parse(claim);
+                int userAge = (int)((DateTime.Now - userBirthDate).TotalDays / 365);
+                if (Age <= userAge)
+                {
+                    return true;
+                }
             }
             return false;
         }

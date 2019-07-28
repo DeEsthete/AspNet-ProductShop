@@ -96,7 +96,6 @@ namespace AspNet_FirstLesson.Controllers
             return View();
         }
 
-        [Authorize]
         [AgeAuthorize(Age = 18)]
         [HttpGet]
         public ActionResult Adult()
@@ -104,6 +103,15 @@ namespace AspNet_FirstLesson.Controllers
             return View();
         }
 
+        [Authorize]
+        [HttpGet]
+        public ActionResult ShowClaims()
+        {
+            var claimsIdentity = HttpContext.User.Identity as ClaimsIdentity;
+            ViewBag.BirthDate = claimsIdentity.Claims.Where(c => c.Type == ClaimTypes.DateOfBirth).Select(c => c.Value).SingleOrDefault();
+            ViewBag.Country = claimsIdentity.Claims.Where(c => c.Type == ClaimTypes.Country).Select(c => c.Value).SingleOrDefault();
+            return View();
+        }
 
         [HttpPost]
         public async Task<ActionResult> SignIn(LoginViewModel loginModel)
@@ -117,6 +125,7 @@ namespace AspNet_FirstLesson.Controllers
                     {
                         ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
                         claim.AddClaim(new Claim(ClaimTypes.DateOfBirth, user.BirthDate.ToString()));
+                        claim.AddClaim(new Claim(ClaimTypes.Country, user.Country));
                         AuthenticationManager.SignOut();
                         AuthenticationManager.SignIn(new AuthenticationProperties
                         {
